@@ -46,7 +46,7 @@ function App() {
                 <Route path="/kanban" element="Kanban"/>
                 <Route path="/editor" element="Editor"/>
                 <Route path="/color-picker" element="ColorPicker"/>
-              </Routes>
+            
 
               {/* charts */}
               <Route path="/line" element="Line"/>
@@ -57,6 +57,7 @@ function App() {
               <Route path="/color-mapping" element="ColorMapping"/>
               <Route path="/pyramid" element="Pyramid"/>
               <Route path="/stacked" element="Stacked"/>
+              </Routes>
             </div>
 
 
