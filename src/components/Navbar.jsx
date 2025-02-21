@@ -17,12 +17,13 @@ const NavButton=({title,customFunct,icon,color,dotColor})=>(
     type="button" 
     onClick={customFunct}
     style={{color}}
-    className='relative text-xl rounded-full p-3  border hover:bg-light-gray'
-    ><span 
+    className='relative text-xl rounded-full p-3 hover:bg-light-gray '
+    >
+      <span 
     className='absolute inline-flex rounded-full h-2 w-2 right-2 top-2'
-    style={{background:dotColor}}>
-{icon}
-    </span>
+    style={{background:dotColor}}/>
+    {icon}
+    
     </button>
 
   </TooltipComponent>
@@ -31,8 +32,33 @@ const NavButton=({title,customFunct,icon,color,dotColor})=>(
 
 const Navbar = () => {
 
-  const {activeMenu,setActiveMenu}=useStateContext()
+  const {
+    activeMenu,
+    setActiveMenu,
+    isClicked,
+    setIsClicked,
+    handleClick,
+    screenSize,
+    setScreenSize
+  }=useStateContext()
 
+  useEffect(()=>{
+    const handleResize=()=>setScreenSize(window.innerWidth)
+    window.addEventListener('resize',handleResize)
+
+    handleResize()
+
+    return ()=> window.removeEventListener('resize',handleResize)
+  },[])
+
+
+  useEffect(()=>{
+  if(screenSize<=900){
+    setActiveMenu(false)
+  } else{
+    setActiveMenu(true)
+  }
+  },[screenSize])
 
   return (
     <div className='flex justify-between p-2 md:mx-6 relative '>
@@ -44,7 +70,7 @@ const Navbar = () => {
      />
 
 
-     <div className="flex">
+     <div className="flex items-center">
      <NavButton 
       title="cart" 
       customFunct={()=>handleClick('cart')}
@@ -53,21 +79,20 @@ const Navbar = () => {
      />
      <NavButton 
       title="chat" 
-      customFunct={()=>handleClick('cart')}
+      customFunct={()=>handleClick('chat')}
       color="blue"
       dotColor="#03C9D7"
       icon={<BsChatLeft/>}
      />
      <NavButton 
       title="Notification" 
-      customFunct={()=>handleClick('cart')}
+      customFunct={()=>handleClick('notification')}
       color="blue"
       dotColor="#03C9D7"
       icon={<RiNotification3Line/>}
      />
      <TooltipComponent content="profile"
      position='BottomCenter'
-     
      >
       <div className='flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg'
       onClick={()=>handleClick('userProfile')}
@@ -82,7 +107,10 @@ const Navbar = () => {
       </div>
 
      </TooltipComponent>
-     
+      {isClicked.cart && <Cart/>}
+      {isClicked.chat && <Chat/>}
+      {isClicked.notification && <Notification/>}
+      {isClicked.userProfile && <UserProfile/>}
      </div>
     </div>
   )
