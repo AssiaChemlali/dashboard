@@ -1,7 +1,7 @@
 import React from 'react'
 import {BsCurrencyDollar} from 'react-icons/bs'
 
-// import {GoPrimitiveDot} from 'react-icons/go'
+import {GoDotFill} from 'react-icons/go'
 import {Stacked,Pie,Button,SparkLine} from '../components'
 import { earningData,SparklineAreaData,ecomPieChartData } from '../data/dummy'
 import { useStateContext } from '../contexts/ContextProvider'
@@ -36,7 +36,8 @@ const Ecommerce = () => {
               key={item.title}
               className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg  md:w-56 p-4 pt-9 rounded-2xl"
               >
-                <button type="button"
+                <button 
+                type="button"
                 style={{
                   color:item.iconColor,
                   backgroundColor:item.iconBg
@@ -54,10 +55,35 @@ const Ecommerce = () => {
                     {item.percentage}
                   </span>
                 </p>
+                <p className='text-sm text-gray-400 mt-1'>{item.title}</p>
+
             </div>
           })}
 
         </div>
+
+      </div>
+      <div className='flex gap-10 flex-wrap justify-center '>
+      <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl md:w-700'>
+        <div className="flex justify-between">
+        <p className='font-semibold text-xl'>Revenue Updates</p>
+        <div className='flex items-center gap-4'>
+          <p className='flex items-center gap-2 text-gray-600 hover:drop-shadow-xl'>
+            <span>
+              <GoDotFill/>
+            </span>
+            <span>Expense</span>
+          </p>
+          <p className='flex items-center gap-2 text-green-600 hover:drop-shadow-xl'>
+            <span>
+              <GoDotFill/>
+            </span>
+            <span>Budget</span>
+          </p>
+
+        </div>
+        </div>
+      </div>
 
       </div>
     </div>
