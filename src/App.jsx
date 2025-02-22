@@ -35,7 +35,7 @@ function App() {
               <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
                 <Navbar/>
               </div>
-            </div>
+           
    
             <div>
               <Routes>
@@ -66,7 +66,7 @@ function App() {
               </Routes>
             </div>
 
-
+            </div>
       </div>
     </BrowserRouter>
    </div>
