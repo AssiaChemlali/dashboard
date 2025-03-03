@@ -128,6 +128,12 @@ const Ecommerce = () => {
               />
             </div>
           </div>
+         <div>
+          <Stacked
+          width="320px"
+          
+          />
+         </div>
 
 
         </div>
