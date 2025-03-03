@@ -7,7 +7,7 @@ import {Navbar,Footer,Sidebar,ThemeSettings } from './components'
 import {Ecommerce,Orders,Calendar,Employees,Stacked,Pyramid,Customers,Kanban,Area,Bar,Pie,Financial,ColorPicker,ColorMapping,Editor,Line} from './pages'
 import { useStateContext } from './contexts/ContextProvider'
 function App() {
- const {activeMenu}=useStateContext()
+ const {activeMenu,themeSettings,setThemeSettings,currentColor}=useStateContext()
   return (
    <div>
     <BrowserRouter>
@@ -15,7 +15,11 @@ function App() {
         <div className="fixed right-4 bottom-4 " style={{zIndex:'1000'}}>
           
           <TooltipComponent content="Setting" position="Top">
-            <button className='text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white' type='button' style={{background:'blue',borderRadius:'50%'}}>
+            <button 
+            className='text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white' 
+            type='button' 
+            onClick={()=>setThemeSettings(true)}
+            style={{background:currentColor,borderRadius:'50%'}}>
               <FiSettings/>
             </button>
           </TooltipComponent>
@@ -38,6 +42,7 @@ function App() {
            
    
             <div>
+             {themeSettings && <ThemeSettings/>} 
               <Routes>
                 {/* dashboard */}
                 <Route path="/" element={<Ecommerce/>}/>
