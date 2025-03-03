@@ -2,10 +2,10 @@ import React from 'react'
 import {BsCurrencyDollar} from 'react-icons/bs'
 
 import {GoDotFill} from 'react-icons/go'
-import {Stacked,Pie,Button,SparkLine} from '../components'
+import {Stacked,Pie,Button} from '../components'
 import { earningData,SparklineAreaData,ecomPieChartData } from '../data/dummy'
 import { useStateContext } from '../contexts/ContextProvider'
-
+import SparkLine from '../components/Charts/SparkLine'
 const Ecommerce = () => {
   return (
     <div className='mt-12'>
@@ -118,6 +118,13 @@ const Ecommerce = () => {
               width="250px"
               data={SparklineAreaData}
               color="blue"
+              />
+            </div>
+            <div className="mt-10">
+              <Button color="white"
+              bgColor="blue"
+              text="Download Report"
+              borderRadius="10px"
               />
             </div>
           </div>
