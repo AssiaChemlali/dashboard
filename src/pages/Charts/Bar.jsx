@@ -1,31 +1,35 @@
 import React from 'react'
-import { ChartComponent,SeriesDirective,SeriesCollectionDirective,Inject,DateTime,Legend, SplineAreaSeries } from '@syncfusion/ej2-react-charts'
+import { ChartComponent,SeriesDirective,SeriesCollectionDirective,Inject,DateTime,Legend, ColumnSeries, DataLabel, Category } from '@syncfusion/ej2-react-charts'
 
-import { areaCustomSeries,areaPrimaryXAxis,areaPrimaryYAxis } from '../../data/dummy'
+import { barChartData,barPrimaryXAxis,barPrimaryYAxis,barCustomSeries } from '../../data/dummy'
 import { useStateContext } from '../../contexts/ContextProvider'
 
 import {Header} from'../../components'
+import { Tooltip } from '@syncfusion/ej2-react-popups'
 const Bar = () => {
   const {currentMode}=useStateContext()
+
+
   return (
-    <div className=''>
-    <Header category="Chart" title="Bar"/>
+    <div className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
+    <Header category="Bar" title="Olympic Medal Counts - RIO"/>
 
 
     <ChartComponent
     id="bar-chart"
+    primaryXAxis={barPrimaryXAxis}
+    primaryYAxis={barPrimaryYAxis}
     height='420px'
-    primaryXAxis={areaPrimaryXAxis}
-    primaryYAxis={areaPrimaryYAxis}
-    chartArea={{border:{width:0}}}
+    chartArea={{ border: { width: 0 } }}
+    tooltip={{ enable: true }}
     background={currentMode==="Dark" ? "#33373E":"#fff"}
     legendSettings={{ background: 'white' }}
     >
-    <Inject services={[SplineAreaSeries,DateTime,Legend]}/>
+    <Inject services={[ColumnSeries,DateTime,Legend,DataLabel,Tooltip,Category]}/>
     <SeriesCollectionDirective>
-      {areaCustomSeries.map((item,index)=>
-        <SeriesDirective key={index} {...item}/>
-      )}
+     {barCustomSeries.map((item,index)=>
+        <SeriesDirective key={index} {...item} />
+    )}
     </SeriesCollectionDirective>
     </ChartComponent>
 
